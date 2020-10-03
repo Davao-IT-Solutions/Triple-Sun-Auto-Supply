@@ -169,12 +169,10 @@ export default {
           filter: window.$(this).data('filter')
         })
       })
-    }, 500)
+    }, 1000)
   }
 }
 </script>
 <style>
-.portfolio-container {
-  min-height: 900px;
-}
+
 </style>
