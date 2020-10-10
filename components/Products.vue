@@ -8,14 +8,26 @@
             <li data-filter="*" class="filter-active">
               All
             </li>
-            <li data-filter=".filter-app">
-              App
+            <li data-filter=".filter-engine">
+              Engine
             </li>
-            <li data-filter=".filter-card">
-              Card
+            <li data-filter=".filter-interior">
+              Interior
             </li>
-            <li data-filter=".filter-web">
-              Web
+            <li data-filter=".filter-exterior">
+              Exterior
+            </li>
+            <li data-filter=".filter-wheels">
+              Wheels & Tires
+            </li>
+            <li data-filter=".filter-batteries">
+              Batteries
+            </li>
+            <li data-filter=".filter-drivetrain">
+              Drivetrain
+            </li>
+            <li data-filter=".filter-frontgrille">
+              Front Grille
             </li>
           </ul>
         </div>

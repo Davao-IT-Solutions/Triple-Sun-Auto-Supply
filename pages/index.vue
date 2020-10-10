@@ -1,7 +1,7 @@
 <template>
   <main id="main">
     <Hero1 />
-    <Brands />
+    <Products />
   </main>
 </template>
 
