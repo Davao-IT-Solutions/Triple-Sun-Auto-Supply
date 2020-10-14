@@ -8,7 +8,21 @@
 <script>
 export default {
   async asyncData ({ params, payload }) {
-    if (payload) { return { productData: payload } } else {
+    if (payload) {
+      return {
+        productData: payload,
+        product: {
+          title: payload.attributes.title,
+          summary: payload.attributes.summary,
+          price: payload.attributes.price,
+          type: payload.attributes.type,
+          img1: payload.attributes.img_link,
+          img2: payload.attributes.img_link2,
+          img3: payload.attributes.img_link3,
+          img4: payload.attributes.img_link4
+        }
+      }
+    } else {
       const productData = await require(`~/content/parts/${params.slug}.md`)
       return {
         productData,

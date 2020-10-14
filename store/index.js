@@ -4,7 +4,7 @@ export const state = () => ({
     engine: 'Engine',
     exterior: 'Exterior',
     interior: 'Interior',
-    wheels: 'Eheels & Tires',
+    wheels: 'Wheels & Tires',
     batteries: 'Batteries',
     drivetrain: 'Drivetrain',
     grille: 'Front Grille'
