@@ -1,4 +1,5 @@
 import autoparts from './content/parts.json'
+import allTypes from './content/allTypes.json'
 const webpack = require('webpack')
 
 export default {
@@ -146,7 +147,8 @@ export default {
   generate: {
     routes () {
       const r = []
-      r.concat(autoparts.map(part => `/parts/${part.slug}`))
+      r.concat(autoparts.map(part => `/product/${part.slug}`))
+      r.concat(allTypes.map(type => `/products/${type}`))
       return r
     }
   }

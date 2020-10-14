@@ -103,16 +103,15 @@ import allTypes from '../content/allTypes.json'
 export default {
   data () {
     return {
-      allTypes,
-      TypeTitles: {
-        engine: 'Engine',
-        exterior: 'Exterior',
-        interior: 'Interior',
-        wheels: 'Eheels & Tires',
-        batteries: 'Batteries',
-        drivetrain: 'Drivetrain',
-        grille: 'Front Grille'
-      }
+      allTypes
+    }
+  },
+  computed: {
+    TypeTitles () {
+      return this.$store.state.TypeTitles
+    },
+    StatusNames () {
+      return this.$store.state.StatusNames
     }
   }
 }
