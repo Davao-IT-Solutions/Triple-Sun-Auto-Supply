@@ -6,6 +6,7 @@
         <div class="logo mr-auto">
           <h1 class="text-light">
             <nuxt-link to="/">
+              <img src="/img/logo-only.png">
               <span>TRIPLE SUN AUTO SUPPLY</span>
             </nuxt-link>
           </h1>
@@ -46,6 +47,8 @@
   </header><!-- End Header -->
 </template>
 
-<style>
-
+<style scoped>
+.logo h1 {
+  margin-bottom: 0;
+}
 </style>

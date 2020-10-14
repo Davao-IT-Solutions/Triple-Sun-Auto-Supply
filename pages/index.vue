@@ -1,12 +1,18 @@
 <template>
   <main id="main">
     <Hero1 />
-    <Products />
+    <Products :parts-items="partsItems" />
   </main>
 </template>
 
 <script>
-export default {}
+export default {
+  computed: {
+    partsItems () {
+      return this.$store.state.partsItems
+    }
+  }
+}
 </script>
 
 <style>

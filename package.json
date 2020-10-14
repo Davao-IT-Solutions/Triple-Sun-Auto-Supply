@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "npx netlify-cms-proxy-server && nuxt",
+    "dev": "concurrently --kill-others \"npx netlify-cms-proxy-server\" \"nuxt\"",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
@@ -18,8 +18,13 @@
     "bootstrap": "^4.5.2",
     "bootstrap-vue": "^2.16.0",
     "core-js": "^3.6.5",
+    "front-matter-markdown": "^0.4.5",
+    "frontmatter-markdown-loader": "^3.6.1",
     "jquery": "^3.5.1",
+    "node-sass": "^4.14.1",
     "nuxt": "^2.14.5",
+    "sass": "^1.27.0",
+    "sass-loader": "^10.0.3",
     "vue-fb-customer-chat": "^0.2.0"
   },
   "devDependencies": {

@@ -11,9 +11,7 @@
           <p>
             Triple Sun Auto Supply is a one of the leading supplier of Bongo parts and accessories in Davao City. We sell affordable brand-new and Korean surplus of all Bongo parts and accessories, brand-new Starex alternators, compressors and BB part from Japan.
           </p>
-          <h3>
-            Mission
-          </h3>
+          <img src="/img/kia-bongo1.png" class="img-fluid">
         </div>
       </div>
     </div>

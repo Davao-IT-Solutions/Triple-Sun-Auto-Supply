@@ -4,15 +4,14 @@
     <div class="footer-top">
       <div class="container">
         <div class="row">
-          <div class="col-lg-3 col-md-6 footer-contact">
-            <h3>Triple Sun Auto Supply</h3>
+          <div class="col-lg-4 col-md-6 footer-contact">
+            <img src="/img/logo2.png" class="img-fluid logo">
             <p>
-              Door 4, Peace Ave. <br>
-              Corner Orchid Street, <br>
-              Km. 7, Bangkal, <br>
-              Davao City <br><br>
+              Door 4, Peace Ave. Corner Orchid Street, <br>
+              Km. 7, Bangkal, Davao City <br><br>
               <strong>Phone:</strong> +63 923 100 2525<br>
-              <strong>Email:</strong> triplesun03@gmail.com<br>
+              <strong>Alt Phone:</strong> +63 997 220 0032<br>
+              <strong>Email:</strong> triplesunautosupply@gmail.com<br>
             </p>
           </div>
 
@@ -38,8 +37,16 @@
             </ul>
           </div>
 
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Products</h4>
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Categories</h4>
+            <ul>
+              <li v-for="type in allTypes" :key="type">
+                <i class="bx bx-chevron-right" />
+                <nuxt-link :to="`/products/${type}`">
+                  {{ TypeTitles[type] }}
+                </nuxt-link>
+              </li>
+            </ul>
           </div>
 
           <div class="col-lg-4 col-md-6 footer-newsletter">
@@ -90,6 +97,30 @@
   </footer><!-- End Footer -->
 </template>
 
-<style>
+<script>
+import allTypes from '../content/allTypes.json'
 
+export default {
+  data () {
+    return {
+      allTypes,
+      TypeTitles: {
+        engine: 'Engine',
+        exterior: 'Exterior',
+        interior: 'Interior',
+        wheels: 'Eheels & Tires',
+        batteries: 'Batteries',
+        drivetrain: 'Drivetrain',
+        grille: 'Front Grille'
+      }
+    }
+  }
+}
+</script>
+
+<style scoped>
+.logo {
+  max-width: 200px;
+  margin-bottom: 10px;
+}
 </style>

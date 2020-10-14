@@ -1,3 +1,4 @@
+import autoparts from './content/parts.json'
 const webpack = require('webpack')
 
 export default {
@@ -78,7 +79,7 @@ export default {
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
-    '@/assets/css/style.css',
+    { src: '@/assets/css/style.scss', lang: 'scss' },
     '@/assets/icofont/icofont.min.css',
     'aos/dist/aos.css'
   ],
@@ -129,6 +130,24 @@ export default {
       new webpack.ProvidePlugin({
         $: 'jquery'
       })
-    ]
+    ],
+    extend (config, ctx) {
+      // Add this to your build config
+      config.module.rules.push({
+        test: /\.md$/,
+        loader: 'frontmatter-markdown-loader',
+        options: {
+          vue: true
+        }
+      })
+    }
+  },
+
+  generate: {
+    routes () {
+      const r = []
+      r.concat(autoparts.map(part => `/parts/${part.slug}`))
+      return r
+    }
   }
 }

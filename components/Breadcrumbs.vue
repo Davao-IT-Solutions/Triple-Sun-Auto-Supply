@@ -10,6 +10,9 @@
               Home
             </nuxt-link>
           </li>
+          <li v-if="parent">
+            {{ parent }}
+          </li>
           <li>{{ title }}</li>
         </ol>
       </div>
@@ -20,6 +23,10 @@
 export default {
   props: {
     title: {
+      type: String,
+      default: ''
+    },
+    parent: {
       type: String,
       default: ''
     }
