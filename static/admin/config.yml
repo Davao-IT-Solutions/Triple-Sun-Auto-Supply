@@ -1,13 +1,13 @@
 backend:
   name: github
-  repo: chesteralan/portfolio-nuxt-vuetifyjs
+  repo: Davao-IT-Solutions/Triple-Sun-Auto-Supply
 site_url: https://www.triplesunautosupply.com
 display_url: https://www.triplesunautosupply.com
 local_backend: true
 publish_mode: editorial_workflow
 media_folder: "static/images/uploads"
 public_folder: "/images/uploads"
-show_preview_links: false
+show_preview_links: true
 
 collections:
   - name: "parts"
