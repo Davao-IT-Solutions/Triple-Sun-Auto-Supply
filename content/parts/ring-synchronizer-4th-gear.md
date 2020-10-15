@@ -1,7 +1,7 @@
 ---
 date: 2020-10-15T15:36:12.532Z
-title: Ring Synchronizer - 4th Gear
-summary: Ring Synchronizer - 4th Gear
+title: Ring Synchronizer - 3rd and 4th Gear
+summary: Ring Synchronizer - 3rd and 4th Gear
 type: engine
 status: new
 source_link: ""
