@@ -8,6 +8,8 @@
 <script>
 export default {
   async asyncData ({ params, payload }) {
+    // eslint-disable-next-line
+    console.log(payload)
     if (payload) {
       return {
         productData: payload,
@@ -41,7 +43,7 @@ export default {
   },
   head () {
     return {
-      title: `${this.product.title} - Product Details`
+      title: `${this.productData.attributes.title} - Product Details`
     }
   }
 }
