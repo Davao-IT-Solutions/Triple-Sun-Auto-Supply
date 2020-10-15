@@ -3,6 +3,9 @@ import allTypes from './content/allTypes.json'
 const webpack = require('webpack')
 
 export default {
+
+  mode: 'universal',
+
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static',
 
@@ -12,7 +15,8 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { hid: 'description', name: 'description', content: 'Wholesale & Retail Of Kia Bonggo And Other Automotive Parts Both Brand New And Surplus' },
+      { hid: 'keywords', name: 'keywords', content: '' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -25,11 +29,7 @@ export default {
         rel: 'stylesheet',
         href: 'https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css'
       },
-      {
-        rel: 'stylesheet',
-        href:
-          'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css'
-      },
+      
       {
         rel: 'stylesheet',
         href: 'https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css'
@@ -46,11 +46,7 @@ export default {
           'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js',
         type: 'text/javascript'
       },
-      {
-        src:
-          'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js',
-        type: 'text/javascript'
-      },
+      
       {
         src:
           'https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js',
@@ -66,11 +62,7 @@ export default {
           'https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js',
         type: 'text/javascript'
       },
-      {
-        src:
-          'https://cdn.jsdelivr.net/npm/venobox@1.9.1/venobox/venobox.min.js',
-        type: 'text/javascript'
-      },
+      
       {
         src: '/js/main.js',
         type: 'text/javascript'
