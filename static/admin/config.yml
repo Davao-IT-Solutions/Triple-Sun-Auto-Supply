@@ -18,15 +18,14 @@ collections:
     sort: "date:desc"
     fields:
       - {label: "Publish Date", name: "date", widget: "date", required: true}
-      - {label: "Thumbnail", name: "thumbnail", widget: "image", required: false}
       - {label: "Title", name: "title", widget: "string", required: true}
       - {label: "Summary", name: summary, widget: text, required: false}
-      - {label: "Price", name: "price", widget: "string", required: false}
-      - {label: 'Type', name: 'type', widget: 'select', options: ['engine', 'exterior', 'interior', 'wheels', 'batteries', 'drivetrain', 'grille'], required: true, default: ""}
-      - {label: 'Status', name: 'status', widget: 'select', options: ['new', 'surplus'], required: true, default: "new"}
-      - {label: "Source Link", name: "source_link", widget: "string", required: false, default: ""}
-      - {label: "Live Link", name: "live_link", widget: "string", required: false, default: ""}
       - {label: "Primary Image URL", name: "img_link", widget: "string", required: false, default: ""}
       - {label: "Cover Image URL", name: "img_link2", widget: "string", required: false, default: ""}
       - {label: "Third Image URL", name: "img_link3", widget: "string", required: false, default: ""}
       - {label: "Fourth Image URL", name: "img_link4", widget: "string", required: false, default: ""}
+      - {label: 'Type', name: 'type', widget: 'select', options: ['engine', 'exterior', 'interior', 'wheels', 'batteries', 'drivetrain', 'grille'], required: true, default: "engine"}
+      - {label: 'Status', name: 'status', widget: 'select', options: ['new', 'surplus'], required: true, default: "new"}
+      - {label: "Price", name: "price", widget: "string", required: false}
+      - {label: "Source Link", name: "source_link", widget: "string", required: false, default: ""}
+      - {label: "Live Link", name: "live_link", widget: "string", required: false, default: ""}
