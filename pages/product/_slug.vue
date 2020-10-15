@@ -8,7 +8,7 @@
 <script>
 export default {
   async asyncData ({ params, payload }) {
-    if (payload) {
+    if (typeof payload.attributes !== 'undefined') {
       return {
         productData: payload,
         product: {
