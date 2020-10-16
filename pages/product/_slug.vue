@@ -8,34 +8,18 @@
 <script>
 export default {
   async asyncData ({ params, payload }) {
-    if (typeof payload.attributes !== 'undefined') {
-      return {
-        productData: payload,
-        product: {
-          title: payload.attributes.title ?? '',
-          summary: payload.attributes.summary ?? '',
-          price: payload.attributes.price ?? '',
-          type: payload.attributes.type ?? '',
-          img1: payload.attributes.img_link ?? '',
-          img2: payload.attributes.img_link2 ?? '',
-          img3: payload.attributes.img_link3 ?? '',
-          img4: payload.attributes.img_link4 ?? ''
-        }
-      }
-    } else {
-      const productData = await require(`~/content/parts/${params.slug}.md`)
-      return {
-        productData,
-        product: {
-          title: productData.attributes.title,
-          summary: productData.attributes.summary,
-          price: productData.attributes.price,
-          type: productData.attributes.type,
-          img1: productData.attributes.img_link,
-          img2: productData.attributes.img_link2,
-          img3: productData.attributes.img_link3,
-          img4: productData.attributes.img_link4
-        }
+    const productData = await require(`~/content/parts/${params.slug}.md`)
+    return {
+      productData,
+      product: {
+        title: productData.attributes.title,
+        summary: productData.attributes.summary,
+        price: productData.attributes.price,
+        type: productData.attributes.type,
+        img1: productData.attributes.img_link,
+        img2: productData.attributes.img_link2,
+        img3: productData.attributes.img_link3,
+        img4: productData.attributes.img_link4
       }
     }
   },
