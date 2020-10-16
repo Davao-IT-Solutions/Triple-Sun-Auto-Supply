@@ -1,7 +1,7 @@
 <template>
   <main id="main">
     <Breadcrumbs title="Products" />
-    <Products :parts-items="partsItems" />
+    <Products :parts-items="partsItems" :search="true" />
   </main>
 </template>
 
