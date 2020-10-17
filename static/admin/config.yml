@@ -29,3 +29,4 @@ collections:
       - {label: "Price", name: "price", widget: "string", required: false}
       - {label: "Source Link", name: "source_link", widget: "string", required: false, default: ""}
       - {label: "Live Link", name: "live_link", widget: "string", required: false, default: ""}
+      - {label: "Show on Homepage", name: "homepage", widget: "boolean", required: false, default: "false"}

@@ -11,6 +11,11 @@ export default {
     partsItems () {
       return this.$store.state.partsItems
     }
+  },
+  head () {
+    return {
+      titleTemplate: null
+    }
   }
 }
 </script>
