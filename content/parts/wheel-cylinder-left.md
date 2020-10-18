@@ -7,7 +7,7 @@ img_link2: https://lh3.googleusercontent.com/fife/ABSRlIrl6ttkLHgY8krEcMEeKTP5oi
 img_link3: ""
 img_link4: ""
 type: wheels
-status: surplus
+status: new
 source_link: ""
 live_link: ""
 homepage: false
