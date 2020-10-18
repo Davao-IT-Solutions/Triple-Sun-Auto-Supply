@@ -10,4 +10,5 @@ type: exterior
 status: new
 source_link: ""
 live_link: ""
+homepage: false
 ---

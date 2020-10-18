@@ -9,6 +9,7 @@
 export default {
   async asyncData ({ params, payload }) {
     const productData = await require(`~/content/parts/${params.slug}.md`)
+    console.log(productData)
     return {
       productData,
       product: {

@@ -2,27 +2,39 @@
   <!-- ======= Portfolio Section ======= -->
   <section id="portfolio" class="portfolio">
     <div class="container">
+      <div v-if="showTitle" class="section-title aos-init aos-animate" data-aos="fade-left">
+        <h2>Products</h2>
+      </div>
+
       <div v-if="search" class="row" data-aos="fade-up" data-aos-delay="100">
         <div class="col-lg-12 d-flex justify-content-center">
           <input v-model="filterText" type="email" class="form-control col-md-6 mb-3 text-center" placeholder="Search Products" @input="searchProducts">
         </div>
       </div>
 
-      <div v-if="menu" class="row" data-aos="fade-up" data-aos-delay="100">
+      <div v-if="categoriesNav" class="row" data-aos="fade-up" data-aos-delay="100">
         <div class="col-lg-12 d-flex justify-content-center">
           <ul id="portfolio-filters">
-            <li data-filter="*" class="filter-active">
+            <li class="product-category filter-active" data-category="">
               All
             </li>
-            <li v-for="type in allTypes" :key="type" :data-filter="`.filter-${type}`">
+            <li v-for="type in allTypes" :key="type" class="product-category" :data-category="`${type}`">
               {{ TypeTitles[type] }}
+            </li>
+          </ul>
+          <ul id="portfolio-filters">
+            <li class="product-status filter-active" data-status="new">
+              New
+            </li>
+            <li class="product-status" data-status="surplus">
+              Surplus
             </li>
           </ul>
         </div>
       </div>
 
       <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-        <div v-for="item in partsItems" :key="item.slug" class="col-lg-4 col-md-6 portfolio-item" :class="`filter-${item.attributes.type}`">
+        <div v-for="item in partsItems" :key="item.slug" class="col-lg-4 col-md-6 portfolio-item" :class="`filter-${item.attributes.type} filter-${item.attributes.type}-${item.attributes.status} filter-${item.attributes.status}`">
           <div class="portfolio-wrap">
             <img :src="item.attributes.img_link" class="img-fluid" :alt="item.attributes.title">
             <div class="portfolio-info">
@@ -54,11 +66,19 @@ export default {
         return []
       }
     },
-    menu: {
+    categoriesNav: {
+      type: Boolean,
+      default: true
+    },
+    statusNav: {
       type: Boolean,
       default: true
     },
     search: {
+      type: Boolean,
+      default: false
+    },
+    showTitle: {
       type: Boolean,
       default: false
     }
@@ -84,12 +104,40 @@ export default {
         layoutMode: 'masonry'
       })
 
-      window.$('#portfolio-filters li').on('click', function () {
-        window.$('#portfolio-filters li').removeClass('filter-active')
+      window.filtersCategory = null
+      window.filtersStatus = 'new'
+
+      window.$('.product-category').on('click', function () {
+        window.$('.product-category').removeClass('filter-active')
         window.$(this).addClass('filter-active')
+        window.filtersCategory = (window.$(this).data('category') !== '') ? window.$(this).data('category') : null
+
+        const filters = [window.filtersCategory, window.filtersStatus]
+        const filter2 = filters.filter((i) => {
+          return i != null
+        })
+
+        const filter3 = '.filter-'.concat(filter2.join('-'))
 
         window.portfolioIsotope.isotope({
-          filter: window.$(this).data('filter')
+          filter: filter3
+        })
+      })
+
+      window.$('.product-status').on('click', function () {
+        window.$('.product-status').removeClass('filter-active')
+        window.$(this).addClass('filter-active')
+        window.filtersStatus = window.$(this).data('status')
+        window.filtersStatus = (window.$(this).data('status') !== '') ? window.$(this).data('status') : null
+        const filters = [window.filtersCategory, window.filtersStatus]
+        const filter2 = filters.filter((i) => {
+          return i != null
+        })
+
+        const filter3 = '.filter-'.concat(filter2.join('-'))
+
+        window.portfolioIsotope.isotope({
+          filter: filter3
         })
       })
     }, 2000)
