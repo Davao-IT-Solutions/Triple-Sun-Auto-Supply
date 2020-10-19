@@ -85,13 +85,11 @@
         </div>
       </div>
       <div class="social-links text-center text-md-right pt-3 pt-md-0">
-        <a target="_blank" href="https://www.facebook.com/triplesun03" class="facebook"><i class="bx bxl-facebook" /></a>
-        <a href="https://www.instagram.com/triplesunautosupply/" class="instagram"><i class="bx bxl-instagram" /></a>
-        <!--
-        <a target="_blank" href="#" class="twitter"><i class="bx bxl-twitter" /></a>
-        <a href="#" class="google-plus"><i class="bx bxl-skype" /></a>
-        <a href="#" class="linkedin"><i class="bx bxl-linkedin" /></a>
-        -->
+        <a target="_blank" href="https://www.facebook.com/triplesunautosupply" class="facebook"><i class="bx bxl-facebook" /></a>
+        <a target="_blank" href="https://www.instagram.com/triplesunautosupply/" class="instagram"><i class="bx bxl-instagram" /></a>
+        <a target="_blank" href="https://twitter.com/triplesun_auto" class="twitter"><i class="bx bxl-twitter" /></a>
+        <a target="_blank" href="https://goo.gl/maps/zn4DAto31qLQRjNC6" class="google-plus"><i class="bx bx-map" /></a>
+        <a target="_blank" href="https://www.linkedin.com/company/triple-sun-auto-supply-of-davao-city/" class="linkedin"><i class="bx bxl-linkedin" /></a>
       </div>
     </div>
   </footer><!-- End Footer -->
