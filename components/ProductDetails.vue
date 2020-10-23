@@ -24,17 +24,8 @@
         </p>
 
         <div class="row">
-          <div class="col-md-3">
-            <a :class="{ 'img-active': coverImage===product.img2}" href="javascript:void(0);" @click="changeCover(product.img2)"><img :src="product.img2" class="img-fluid img-rounded img-thumbnail" alt=""></a>
-          </div>
-          <div class="col-md-3">
-            <a :class="{ 'img-active': coverImage===product.img1}" href="javascript:void(0);" @click="changeCover(product.img1)"><img :src="product.img1" class="img-fluid img-rounded img-thumbnail" alt=""></a>
-          </div>
-          <div class="col-md-3">
-            <a :class="{ 'img-active': coverImage===product.img3}" href="javascript:void(0);" @click="changeCover(product.img3)"><img :src="product.img3" class="img-fluid img-rounded img-thumbnail" alt=""></a>
-          </div>
-          <div class="col-md-3">
-            <a :class="{ 'img-active': coverImage===product.img4}" href="javascript:void(0);" @click="changeCover(product.img4)"><img :src="product.img4" class="img-fluid img-rounded img-thumbnail" alt=""></a>
+          <div v-for="img in FilteredImages" :key="img" class="col-md-3">
+            <a :class="{'img-active': coverImage===product[img]}" href="javascript:void(0);" @click="changeCover(product[img])"><img :src="product[img]" class="img-fluid img-rounded img-thumbnail" alt=""></a>
           </div>
         </div>
       </div>
@@ -56,8 +47,9 @@ export default {
   },
   data () {
     return {
-      coverImage: this.product.img2,
-      priceLine: this.product.price !== '' && this.product.price !== null && this.product.price !== undefined
+      coverImage: (this.product.img2 !== '') ? this.product.img2 : this.product.img1,
+      priceLine: this.product.price !== '' && this.product.price !== null && this.product.price !== undefined,
+      images: ['img1', 'img2', 'img3', 'img4', 'img5', 'img6', 'img7', 'img8', 'img9', 'img10', 'img11', 'img12']
     }
   },
   computed: {
@@ -66,12 +58,20 @@ export default {
     },
     StatusNames () {
       return this.$store.state.StatusNames
+    },
+    FilteredImages () {
+      return this.images.filter((i) => {
+        return !!this.product[i]
+      })
     }
   },
   methods: {
     changeCover (img) {
       this.coverImage = img
       window.scrollTo(0, 0)
+    },
+    notEmpty (i) {
+      return !!this.product[i]
     }
   }
 }
