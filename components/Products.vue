@@ -23,7 +23,7 @@
             </li>
           </ul>
           <ul id="portfolio-filters">
-            <li class="product-status filter-active" data-status="new">
+            <li class="product-status" data-status="new">
               New
             </li>
             <li class="product-status" data-status="surplus">
