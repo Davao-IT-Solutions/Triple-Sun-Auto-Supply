@@ -18,23 +18,23 @@
             <li class="product-category filter-active" data-category="">
               All
             </li>
-            <li v-for="type in allTypes" :key="type" class="product-category" :data-category="`${type}`">
+            <li v-for="type in allTypes" :key="type" class="product-category" :data-category="`.filter-${type}`">
               {{ TypeTitles[type] }}
             </li>
           </ul>
           <ul id="portfolio-filters">
-            <li class="product-status" data-status="new">
+            <nuxt-link to="/products/new" tag="li">
               New
-            </li>
-            <li class="product-status" data-status="surplus">
+            </nuxt-link>
+            <nuxt-link to="/products/surplus" tag="li">
               Surplus
-            </li>
+            </nuxt-link>
           </ul>
         </div>
       </div>
 
       <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-        <div v-for="item in partsItems" :key="item.slug" class="col-lg-4 col-md-6 portfolio-item" :class="`filter-${item.attributes.type} filter-${item.attributes.type}-${item.attributes.status} filter-${item.attributes.status}`">
+        <div v-for="item in partsItems" :key="item.slug" class="col-lg-4 col-md-6 portfolio-item" :class="`filter-${item.attributes.type}`">
           <div class="portfolio-wrap">
             <img :src="item.attributes.img_link" class="img-fluid" :alt="item.attributes.title">
             <div class="portfolio-info">
@@ -110,34 +110,8 @@ export default {
       window.$('.product-category').on('click', function () {
         window.$('.product-category').removeClass('filter-active')
         window.$(this).addClass('filter-active')
-        window.filtersCategory = (window.$(this).data('category') !== '') ? window.$(this).data('category') : null
-
-        const filters = [window.filtersCategory, window.filtersStatus]
-        const filter2 = filters.filter((i) => {
-          return i != null
-        })
-
-        const filter3 = '.filter-'.concat(filter2.join('-'))
-
         window.portfolioIsotope.isotope({
-          filter: filter3
-        })
-      })
-
-      window.$('.product-status').on('click', function () {
-        window.$('.product-status').removeClass('filter-active')
-        window.$(this).addClass('filter-active')
-        window.filtersStatus = window.$(this).data('status')
-        window.filtersStatus = (window.$(this).data('status') !== '') ? window.$(this).data('status') : null
-        const filters = [window.filtersCategory, window.filtersStatus]
-        const filter2 = filters.filter((i) => {
-          return i != null
-        })
-
-        const filter3 = '.filter-'.concat(filter2.join('-'))
-
-        window.portfolioIsotope.isotope({
-          filter: filter3
+          filter: window.$(this).data('category')
         })
       })
     }, 2000)
@@ -165,5 +139,8 @@ export default {
 }
 </script>
 <style>
-
+.portfolio #portfolio-filters li.nuxt-link-active {
+  color: #fff;
+  background: #213e80;
+}
 </style>
