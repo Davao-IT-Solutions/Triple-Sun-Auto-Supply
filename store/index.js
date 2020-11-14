@@ -1,5 +1,26 @@
+import { createClient } from '~/plugins/contentful.js'
+const client = createClient()
+
+const getContentfulItems = (env, commit) => {
+  return Promise.all([
+    client.getEntries({
+      content_type: 'autoParts',
+      order: '-sys.createdAt'
+    }),
+    client.getEntries({
+      content_type: 'category',
+      order: '-sys.createdAt'
+    })
+  ]).then(([autoparts, categories]) => {
+    commit('setPartsItems', autoparts)
+    commit('setCategories', categories)
+    return true
+  })
+}
+
 export const state = () => ({
   partsItems: [],
+  categories: [],
   TypeTitles: {
     engine: 'Engine',
     exterior: 'Exterior',
@@ -12,32 +33,34 @@ export const state = () => ({
   StatusNames: {
     new: 'Brand New',
     surplus: 'Surplus'
+  },
+  coverImage: {
+    url: 'https://via.placeholder.com/1110x200.png?text=No%20Image%20Found',
+    title: 'No Image Found'
   }
 })
 
-const sortByTitle = (a, b) => {
-  const textA = a.attributes.title.toUpperCase()
-  const textB = b.attributes.title.toUpperCase()
-  return (textA < textB) ? -1 : (textA > textB) ? 1 : 0
-}
+// const sortByTitle = (a, b) => {
+//   const textA = a.fields.title.toUpperCase()
+//   const textB = b.fields.title.toUpperCase()
+//   return (textA < textB) ? -1 : (textA > textB) ? 1 : 0
+// }
 
 export const mutations = {
   setPartsItems (state, list) {
-    list.sort(sortByTitle)
     state.partsItems = list
+  },
+  setCategories (state, list) {
+    state.categories = list
+  },
+  setCoverImage (state, coverImage) {
+    state.coverImage = coverImage
   }
 }
 
 export const actions = {
-  async nuxtServerInit ({ commit }) {
-    const parts = await require.context('~/content/parts/', false, /\.md$/)
-    const partsItems = parts.keys().map((key) => {
-      const res = parts(key)
-      res.slug = key.slice(2, -3)
-      res.route = '/parts/' + res.slug
-      return res
-    })
-    await commit('setPartsItems', partsItems)
+  async nuxtServerInit ({ commit }, { env }) {
+    await getContentfulItems(env, commit)
   }
 }
 

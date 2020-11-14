@@ -1,10 +1,17 @@
-import autoparts from './content/parts.json'
-import allTypes from './content/allTypes.json'
+// import autoparts from './content/parts.json'
+// import allTypes from './content/allTypes.json'
+
 const webpack = require('webpack')
+const contentful = require('./.contentful.json')
 
 export default {
 
-  mode: 'universal',
+  env: {
+    CTF_SPACE_ID: contentful.CTF_SPACE_ID,
+    CTF_CDA_ACCESS_TOKEN: contentful.CTF_CDA_ACCESS_TOKEN,
+    CTF_PERSON_ID: contentful.CTF_PERSON_ID,
+    CTF_BLOG_POST_TYPE_ID: contentful.CTF_BLOG_POST_TYPE_ID
+  },
 
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static',
@@ -30,7 +37,7 @@ export default {
         rel: 'stylesheet',
         href: 'https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css'
       },
-      
+
       {
         rel: 'stylesheet',
         href: 'https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css'
@@ -47,7 +54,7 @@ export default {
           'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js',
         type: 'text/javascript'
       },
-      
+
       {
         src:
           'https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js',
@@ -63,7 +70,7 @@ export default {
           'https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js',
         type: 'text/javascript'
       },
-      
+
       {
         src: '/js/main.js',
         type: 'text/javascript'
@@ -140,8 +147,28 @@ export default {
   generate: {
     routes () {
       const r = []
-      r.concat(autoparts.map(part => `/product/${part.slug}`))
-      r.concat(allTypes.map(type => `/products/${type}`))
+
+      const contentful = require('contentful')
+      const config = require('./.contentful.json')
+      const client = contentful.createClient({
+        space: config.CTF_SPACE_ID,
+        accessToken: config.CTF_CDA_ACCESS_TOKEN
+      })
+
+      Promise.all([
+        client.getEntries({
+          content_type: 'autoParts',
+          order: '-sys.createdAt'
+        }),
+        client.getEntries({
+          content_type: 'category',
+          order: '-sys.createdAt'
+        })
+      ]).then(([autoparts, categories]) => {
+        r.concat(autoparts.items.map(item => `product/${item.fields.path}`))
+        r.concat(categories.items.map(item => `products/${item.fields.slug}`))
+      })
+
       return r
     }
   }

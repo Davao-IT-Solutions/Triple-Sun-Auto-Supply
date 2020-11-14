@@ -18,8 +18,8 @@
             <li class="product-category filter-active" data-category="">
               All
             </li>
-            <li v-for="type in allTypes" :key="type" class="product-category" :data-category="`.filter-${type}`">
-              {{ TypeTitles[type] }}
+            <li v-for="(category,index) in getCategories" :key="index" class="product-category" :data-category="`.filter-${category.slug}`">
+              {{ category.title }}
             </li>
           </ul>
           <ul id="portfolio-filters">
@@ -34,22 +34,7 @@
       </div>
 
       <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-        <div v-for="item in partsItems" :key="item.slug" class="col-lg-4 col-md-6 portfolio-item" :class="`filter-${item.attributes.type}`">
-          <div class="portfolio-wrap">
-            <img :src="item.attributes.img_link" class="img-fluid" :alt="item.attributes.title">
-            <div class="portfolio-info">
-              <h4 class="title">
-                {{ item.attributes.title }}
-              </h4>
-              <p>{{ TypeTitles[item.attributes.type] }} &middot; {{ StatusNames[item.attributes.status] }}</p>
-              <div class="portfolio-links">
-                <nuxt-link :to="`/product/${item.slug}`" :title="`${item.attributes.title} Details`">
-                  <i class="bx bx-link" />
-                </nuxt-link>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ProductItem v-for="(item, index) in partsItems" :key="index" :item="item" />
       </div>
     </div>
   </section><!-- End Portfolio Section -->
@@ -90,6 +75,22 @@ export default {
     }
   },
   computed: {
+    getCategories () {
+      const sortByTitle = (a, b) => {
+        const textA = a.title.toUpperCase()
+        const textB = b.title.toUpperCase()
+        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0
+      }
+      const categories = []
+      this.$store.state.categories.items.forEach((item, index) => {
+        categories.push({
+          title: item.fields.title,
+          slug: item.fields.slug
+        })
+      })
+      categories.sort(sortByTitle)
+      return categories
+    },
     TypeTitles () {
       return this.$store.state.TypeTitles
     },
@@ -98,6 +99,7 @@ export default {
     }
   },
   mounted () {
+    // console.log(this.getCategories)
     setTimeout(function () {
       window.portfolioIsotope = window.$('.portfolio-container').isotope({
         itemSelector: '.portfolio-item',

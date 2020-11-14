@@ -9,7 +9,7 @@
 export default {
   computed: {
     partsItems () {
-      return this.$store.state.partsItems
+      return this.$store.state.partsItems.items
     }
   },
   head () {

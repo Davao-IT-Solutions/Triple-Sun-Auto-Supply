@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently --kill-others \"npx netlify-cms-proxy-server\" \"nuxt\"",
+    "dev2": "concurrently --kill-others \"npx netlify-cms-proxy-server\" \"nuxt\"",
+    "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "gen": "node content/generate.js",
@@ -18,6 +19,7 @@
     "aos": "^2.3.4",
     "bootstrap": "^4.5.2",
     "bootstrap-vue": "^2.16.0",
+    "contentful": "^7.14.12",
     "core-js": "^3.6.5",
     "front-matter-markdown": "^0.4.5",
     "frontmatter-markdown-loader": "^3.6.1",

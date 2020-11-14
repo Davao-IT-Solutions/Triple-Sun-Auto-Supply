@@ -9,8 +9,8 @@
 export default {
   computed: {
     partsItems () {
-      return this.$store.state.partsItems.filter((i) => {
-        return i.attributes.status === 'surplus'
+      return this.$store.state.partsItems.items.filter((i) => {
+        return i.fields.status.includes('surplus')
       })
     }
   },

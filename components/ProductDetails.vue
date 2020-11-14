@@ -3,13 +3,14 @@
     <div class="container">
       <div class="portfolio-details-container" data-aos="fade-up" data-aos-delay="100">
         <div class="portfolio-details-carousel">
-          <img :src="coverImage" class="img-fluid" alt="">
+          <img :src="getCoverImage.url" class="cover-image img-fluid" :alt="getCoverImage.title">
         </div>
 
         <div class="portfolio-info">
           <h3>Product Information</h3>
           <ul>
-            <li><strong>Type</strong>: {{ TypeTitles[product.type] }}</li>
+            <li><strong>Type</strong>: {{ getProductCategory.title }}</li>
+            <li><strong>Status</strong>: {{ getProductStatus }}</li>
             <li v-if="priceLine">
               <strong>Market Price</strong>: {{ product.price }}
             </li>
@@ -24,9 +25,7 @@
         </p>
 
         <div class="row">
-          <div v-for="img in FilteredImages" :key="img" class="col-md-3">
-            <a :class="{'img-active': coverImage===product[img]}" href="javascript:void(0);" @click="changeCover(product[img])"><img :src="product[img]" class="img-fluid img-rounded img-thumbnail" alt=""></a>
-          </div>
+          <GalleryItem v-for="(item,index) in getGallery" :key="index" :item="item" />
         </div>
       </div>
     </div>
@@ -40,19 +39,45 @@ export default {
       type: Object,
       default () {
         return {
-          title: ''
+          coverImage: { url: '', title: '' },
+          title: '',
+          summary: '',
+          gallery: [],
+          price: '',
+          primaryImage: {},
+          status: [],
+          type: []
         }
       }
     }
   },
   data () {
     return {
-      coverImage: (this.product.img2 !== '') ? this.product.img2 : this.product.img1,
       priceLine: this.product.price !== '' && this.product.price !== null && this.product.price !== undefined,
       images: ['img1', 'img2', 'img3', 'img4', 'img5', 'img6', 'img7', 'img8', 'img9', 'img10', 'img11', 'img12']
     }
   },
   computed: {
+    getProductCategory () {
+      return this.product.category.fields
+    },
+    getProductStatus () {
+      const status = this.product.status.map((item) => {
+        return this.StatusNames[item]
+      })
+      return status.join(',')
+    },
+    getCoverImage () {
+      return this.$store.state.coverImage
+    },
+    getGallery () {
+      return this.product.gallery.map((item) => {
+        return {
+          url: item.fields.file.url,
+          title: item.fields.title
+        }
+      })
+    },
     TypeTitles () {
       return this.$store.state.TypeTitles
     },
@@ -65,7 +90,19 @@ export default {
       })
     }
   },
+  mounted () {
+    this.$store.commit('setCoverImage', {
+      url: this.product.coverImage.fields.file.url,
+      title: this.product.coverImage.fields.title
+    })
+  },
   methods: {
+    imageDetails (item) {
+      return {
+        title: item.fields.title,
+        url: item.fields.file.url
+      }
+    },
     changeCover (img) {
       this.coverImage = img
       window.scrollTo(0, 0)
@@ -80,5 +117,8 @@ export default {
 <style scoped>
 .img-active .img-thumbnail {
   background-color:#213e80!important;
+}
+.cover-image {
+  width: 100%;
 }
 </style>

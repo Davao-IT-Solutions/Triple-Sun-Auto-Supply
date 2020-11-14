@@ -9,9 +9,7 @@
 export default {
   computed: {
     partsItems () {
-      return this.$store.state.partsItems.filter((i) => {
-        return i.attributes.homepage === true
-      })
+      return this.$store.state.partsItems.items
     }
   },
   head () {
@@ -21,7 +19,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>

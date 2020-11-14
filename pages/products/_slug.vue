@@ -9,8 +9,8 @@
 export default {
   computed: {
     partsItems () {
-      return this.$store.state.partsItems.filter((item) => {
-        return item.attributes.type === this.$route.params.slug
+      return this.$store.state.partsItems.items.filter((item) => {
+        return item.fields.category.fields.slug === this.$route.params.slug
       })
     },
     TypeTitles () {

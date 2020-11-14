@@ -40,10 +40,10 @@
           <div class="col-lg-2 col-md-6 footer-links">
             <h4>Categories</h4>
             <ul>
-              <li v-for="type in allTypes" :key="type">
+              <li v-for="(category,index) in getCategories" :key="index">
                 <i class="bx bx-chevron-right" />
-                <nuxt-link :to="`/products/${type}`">
-                  {{ TypeTitles[type] }}
+                <nuxt-link :to="`/products/${category.slug}`">
+                  {{ category.title }}
                 </nuxt-link>
               </li>
             </ul>
@@ -110,6 +110,22 @@ export default {
     },
     StatusNames () {
       return this.$store.state.StatusNames
+    },
+    getCategories () {
+      const sortByTitle = (a, b) => {
+        const textA = a.title.toUpperCase()
+        const textB = b.title.toUpperCase()
+        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0
+      }
+      const categories = []
+      this.$store.state.categories.items.forEach((item, index) => {
+        categories.push({
+          title: item.fields.title,
+          slug: item.fields.slug
+        })
+      })
+      categories.sort(sortByTitle)
+      return categories
     }
   }
 }
