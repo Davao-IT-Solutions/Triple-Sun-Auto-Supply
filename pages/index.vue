@@ -9,7 +9,9 @@
 export default {
   computed: {
     partsItems () {
-      return this.$store.state.partsItems.items
+      return this.$store.state.partsItems.items.filter((i) => {
+        return i.fields.showOnHomepage
+      })
     }
   },
   head () {
