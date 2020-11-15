@@ -92,8 +92,8 @@ export default {
   },
   mounted () {
     this.$store.commit('setCoverImage', {
-      url: this.product.coverImage.fields.file.url,
-      title: this.product.coverImage.fields.title
+      url: this.product.gallery[0].fields.file.url,
+      title: this.product.gallery[0].fields.title
     })
   },
   methods: {

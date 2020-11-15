@@ -47,8 +47,8 @@ export default {
     },
     getItemImage () {
       return {
-        title: this.item.fields.primaryImage.fields.title,
-        url: this.item.fields.primaryImage.fields.file.url
+        title: this.item.fields.gallery[0].fields.title,
+        url: this.item.fields.gallery[0].fields.file.url
       }
     }
   }
