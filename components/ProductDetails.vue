@@ -39,22 +39,19 @@ export default {
       type: Object,
       default () {
         return {
-          coverImage: { url: '', title: '' },
           title: '',
           summary: '',
           gallery: [],
           price: '',
-          primaryImage: {},
           status: [],
-          type: []
+          category: {}
         }
       }
     }
   },
   data () {
     return {
-      priceLine: this.product.price !== '' && this.product.price !== null && this.product.price !== undefined,
-      images: ['img1', 'img2', 'img3', 'img4', 'img5', 'img6', 'img7', 'img8', 'img9', 'img10', 'img11', 'img12']
+      priceLine: this.product.price !== '' && this.product.price !== null && this.product.price !== undefined
     }
   },
   computed: {
