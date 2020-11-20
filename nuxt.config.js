@@ -1,16 +1,10 @@
-// import autoparts from './content/parts.json'
-// import allTypes from './content/allTypes.json'
-
 const webpack = require('webpack')
-const contentful = require('./.contentful.json')
 
 export default {
 
   env: {
-    CTF_SPACE_ID: contentful.CTF_SPACE_ID,
-    CTF_CDA_ACCESS_TOKEN: contentful.CTF_CDA_ACCESS_TOKEN,
-    CTF_PERSON_ID: contentful.CTF_PERSON_ID,
-    CTF_BLOG_POST_TYPE_ID: contentful.CTF_BLOG_POST_TYPE_ID
+    CTF_SPACE_ID: process.env.CTF_SPACE_ID,
+    CTF_CDA_ACCESS_TOKEN: process.env.CTF_CDA_ACCESS_TOKEN,
   },
 
   // Target (https://go.nuxtjs.dev/config-target)
@@ -149,10 +143,9 @@ export default {
       const r = []
 
       const contentful = require('contentful')
-      const config = require('./.contentful.json')
       const client = contentful.createClient({
-        space: config.CTF_SPACE_ID,
-        accessToken: config.CTF_CDA_ACCESS_TOKEN
+        space: process.env.CTF_SPACE_ID,
+        accessToken: process.env.CTF_CDA_ACCESS_TOKEN
       })
 
       Promise.all([
